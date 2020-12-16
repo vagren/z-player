@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vedio</title>
+</head>
+<body>
+  <input type="file" name="file" onchange="handleChange()">
+</body>
+<script>
+// let input = document.getElementsByTagName('input');
+document.onload = function() {
+}
+
+
+
+
+
+function handleChange(e) {
+  const file = document.getElementsByName('file')
+  const name = file[0].files[0]
+  // video.src = name
+  let reader = new FileReader();
+  reader.onload = () => {
+    let video = document.createElement('video');
+    video.controls = true
+    video.width = '800';
+    video.height = '480';
+    video.src = reader.result;
+    document.body.insertBefore(video, null)
+  }
+  reader.onerror = () => {
+    alert('err');
+  }
+  reader.readAsDataURL(name);
+}
+</script>
+</html>
